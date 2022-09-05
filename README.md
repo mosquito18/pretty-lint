@@ -30,22 +30,24 @@ package.json
 
 2. `babel.parseSync`和`babel.transformFromAstSync` code转ast再转回code
 
-查看代码的完整 AST: https://astexplorer.net/
-AST节点：https://github.com/babel/babel/blob/main/packages/babel-parser/ast/spec.md#objectexpression
-Babel 插件通关秘籍： https://juejin.cn/book/6946117847848321055
+* 查看代码的完整 AST: https://astexplorer.net/
+* AST节点：https://github.com/babel/babel/blob/main/packages/babel-parser/ast/spec.md#objectexpression
+* Babel 插件通关秘籍： https://juejin.cn/book/6946117847848321055
 
 3. 几种文件路径处理方法
 
-`import.meta.url`:当前代码所在的文件路径 file:///Users/edz/workspace/@mosquito/pretty-lint/lib/utils.js
+- 3.1 `import.meta.url`: 当前代码所在的文件路径 -> file:///Users/edz/workspace/@mosquito/pretty-lint/lib/utils.js
 
+- 3.2
 ```
 import { fileURLToPath } from 'url';
 fileURLToPath(import.meta.url)
 //  /Users/edz/workspace/@mosquito/pretty-lint/lib/utils.js
 ```
 
-`path.dirname(fileURLToPath(import.meta.url))`: /Users/edz/workspace/@mosquito/pretty-lint/lib
+- 3.3 `path.dirname(fileURLToPath(import.meta.url))`: /Users/edz/workspace/@mosquito/pretty-lint/lib
 
+- 3.4 
 ```
 fs.readdirSync(path.join(__dirname, 'templates')).forEach((template) => {
     const { name } = path.parse(path.join(__dirname, 'templates', template));
@@ -53,7 +55,7 @@ fs.readdirSync(path.join(__dirname, 'templates')).forEach((template) => {
   });
 ```
 
-`process.cwd()`
+- 3.5 `process.cwd()`
 
 
 ## TODO
